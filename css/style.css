@@ -13,30 +13,49 @@ body {
 
   padding: 30px 15px;
 
-  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-family: Arial, sans-serif;
 
   background:
-    radial-gradient(circle at 20% 20%, #e8dfcf, transparent 30%),
-    radial-gradient(circle at 80% 80%, #d8cbb8, transparent 30%), #cfc3b0;
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(255, 255, 255, 0.35),
+      transparent 30%
+    ),
+    radial-gradient(circle at 85% 85%, rgba(90, 70, 45, 0.15), transparent 35%),
+    #d2c6b5;
 }
 
 .todo-container {
   position: relative;
 
   width: 100%;
-  max-width: 520px;
+  max-width: 560px;
 
-  padding: 45px 25px 35px 55px;
+  padding: 55px 35px 45px 70px;
 
-  background-color: #fffdf5;
+  background-color: #fffdf6;
 
-  border-radius: 5px 12px 12px 5px;
+  /*
+    خطوط دفتر
+  */
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 39px,
+    #d7e3eb 40px,
+    #d7e3eb 41px
+  );
+
+  border-radius: 3px 12px 12px 3px;
 
   box-shadow:
-    8px 10px 0 rgba(60, 45, 30, 0.08),
-    15px 20px 35px rgba(60, 45, 30, 0.18);
+    3px 3px 0 #b9ad9b,
+    8px 10px 20px rgba(60, 45, 30, 0.14),
+    18px 22px 40px rgba(60, 45, 30, 0.12);
 
   overflow: hidden;
+
+  transform: rotate(-0.25deg);
 }
 
 .todo-container::before {
@@ -46,11 +65,14 @@ body {
 
   top: 0;
   bottom: 0;
-  left: 38px;
+
+  left: 48px;
 
   width: 2px;
 
-  background: #e58b8b;
+  background: #e69a9a;
+
+  opacity: 0.85;
 }
 
 .todo-container::after {
@@ -60,32 +82,31 @@ body {
 
   inset: 0;
 
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 37px,
-    #d9e4ed 38px,
-    #d9e4ed 39px
-  );
+  background: radial-gradient(rgba(100, 80, 60, 0.035) 1px, transparent 1px);
+
+  background-size: 5px 5px;
 
   pointer-events: none;
 
-  opacity: 0.75;
+  z-index: 0;
 }
 
 .todo-container > * {
   position: relative;
-  z-index: 1;
+
+  z-index: 2;
 }
 
 h1 {
-  margin-bottom: 28px;
+  margin-bottom: 30px;
 
-  color: #273746;
+  color: #263746;
 
-  font-family: Georgia, serif;
+  font-family: Georgia, "Times New Roman", serif;
 
-  font-size: 34px;
+  font-size: 38px;
+
+  font-weight: 700;
 
   text-align: center;
 
@@ -96,65 +117,66 @@ h1 {
 
 #todoForm {
   display: flex;
+
   flex-direction: column;
 
-  gap: 12px;
+  gap: 10px;
 
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 #todoInput {
   width: 100%;
-  height: 48px;
 
-  padding: 0 15px;
+  height: 42px;
+
+  padding: 0 10px;
 
   border: none;
-  border-bottom: 2px solid #6d8191;
+
+  border-bottom: 2px solid #637888;
 
   outline: none;
 
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.25);
 
-  color: #273746;
+  color: #263746;
 
-  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-family: Arial, sans-serif;
 
-  font-size: 16px;
+  font-size: 15px;
 }
 
 #todoInput::placeholder {
-  color: #8996a0;
+  color: #8d999f;
 }
 
-/* Input Focus */
-
 #todoInput:focus {
-  border-bottom-color: #273746;
+  border-bottom-color: #263746;
 
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.5);
 }
 
 #addTodo {
   width: 100%;
 
-  min-height: 48px;
+  height: 42px;
 
   border: none;
-  border-radius: 6px;
 
-  background: #273746;
+  border-radius: 5px;
+
+  background: #263746;
 
   color: #ffffff;
 
-  font-size: 15px;
-  font-weight: bold;
+  font-size: 14px;
 
-  letter-spacing: 0.5px;
+  font-weight: 600;
 
   cursor: pointer;
 
-  box-shadow: 3px 4px 0 #17222c;
+  box-shadow: 0 3px 0 #18242d;
 
   transition:
     transform 0.2s ease,
@@ -162,89 +184,114 @@ h1 {
 }
 
 #addTodo:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 
-  box-shadow: 3px 6px 0 #17222c;
+  box-shadow: 0 4px 0 #18242d;
 }
 
 #addTodo:active {
   transform: translateY(2px);
 
-  box-shadow: 1px 2px 0 #17222c;
+  box-shadow: 0 1px 0 #18242d;
 }
 
 #todoList {
   list-style: none;
 
   display: flex;
+
   flex-direction: column;
 
-  gap: 12px;
+  gap: 0;
 }
 
 #todoList li {
-  min-height: 50px;
+  width: 100%;
+
+  height: 41px;
 
   display: flex;
+
   align-items: center;
-  gap: 8px;
 
-  padding: 8px 10px;
+  gap: 5px;
 
-  border-bottom: 1px dashed #9ba9b3;
+  padding: 0 5px;
 
-  color: #29333b;
+  color: #263746;
 
-  font-size: 16px;
-
-  animation: appear 0.25s ease;
+  animation: todoAppear 0.3s ease;
 }
 
 #todoList li span {
   flex: 1;
 
-  line-height: 1.5;
+  height: 41px;
+
+  line-height: 41px;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+
+  color: #293b49;
+
+  font-family: "Segoe Print", "Comic Sans MS", cursive;
+
+  font-size: 15px;
+
+  transform: rotate(-0.3deg);
 }
 
 #todoList button {
-  padding: 7px 10px;
+  width: 28px;
+
+  height: 28px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 0;
 
   border: none;
-  border-radius: 5px;
 
-  font-size: 12px;
+  background: transparent;
+
+  font-size: 17px;
 
   cursor: pointer;
 
+  opacity: 0.55;
+
   transition:
-    transform 0.2s ease,
-    opacity 0.2s ease;
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 #todoList button:hover {
-  transform: translateY(-2px);
+  opacity: 1;
 
-  opacity: 0.85;
+  transform: scale(1.12);
 }
 
-.edit-btn,
+.edit-btn {
+  color: #526979;
+}
+
 .delete-btn {
-  border: none;
-  background: transparent;
-  font-size: 20px;
-  cursor: pointer;
-  padding: 5px;
-  transition: 0.2s;
+  color: #c76f6f;
 }
-.edit-btn,
-.delete-btn:hover {
-  transform: scale(1.15);
-}
-@keyframes appear {
+
+@keyframes todoAppear {
   from {
     opacity: 0;
 
-    transform: translateY(-8px);
+    transform: translateY(-5px);
   }
 
   to {
@@ -256,19 +303,23 @@ h1 {
 
 @media (min-width: 768px) {
   body {
-    padding: 40px;
+    padding: 50px;
   }
 
   .todo-container {
-    padding: 50px 40px 40px 65px;
+    max-width: 620px;
+
+    padding: 60px 45px 50px 80px;
   }
 
   .todo-container::before {
-    left: 48px;
+    left: 58px;
   }
 
   #todoForm {
     flex-direction: row;
+
+    align-items: center;
   }
 
   #todoInput {
@@ -276,16 +327,16 @@ h1 {
   }
 
   #addTodo {
-    width: 130px;
+    width: 125px;
   }
 }
 
 @media (min-width: 1100px) {
   .todo-container {
-    max-width: 600px;
+    max-width: 650px;
   }
 
   h1 {
-    font-size: 40px;
+    font-size: 42px;
   }
 }
